@@ -7,6 +7,7 @@ import java.util.Scanner;
 import model.MenuItem;
 import model.Order;
 import model.Restaurant;
+import model.Customer;
 
 public class ConsoleApp {
 
@@ -14,6 +15,16 @@ public class ConsoleApp {
 
         List<Restaurant> restaurants = seedRestaurants();
         Scanner sc = new Scanner(System.in);
+        
+        // Login (simple)
+        Customer validCustomer = new Customer("emre", "1234");
+
+        boolean ok = login(sc, validCustomer);
+        if (!ok) {
+            System.out.println("Too many failed attempts. Exiting...");
+            sc.close();
+            return;
+        }
 
         // Restaurant list
         System.out.println("=== Restaurants ===");
@@ -77,6 +88,7 @@ public class ConsoleApp {
         // Rating
         int rating = readInt(sc, "Rate the restaurant (1-10): ", 1, 10);
         System.out.println("Thanks! You rated " + selectedRestaurant.getName() + " as " + rating + "/10.");
+        sc.close();
 
     }
 
@@ -121,6 +133,28 @@ public class ConsoleApp {
         restaurants.add(r7);
 
         return restaurants;
+    }
+    private static boolean login(Scanner sc, Customer validCustomer) {
+        System.out.println("=== Login ===");
+
+        int attempts = 3;
+        while (attempts > 0) {
+            System.out.print("Username: ");
+            String u = sc.nextLine().trim();
+
+            System.out.print("Password: ");
+            String p = sc.nextLine().trim();
+
+            // küçük kontrol: Customer içinde doğrulama
+            if (validCustomer.checkLogin(u, p)) {
+                System.out.println("Login successful!\n");
+                return true;
+            }
+
+            attempts--;
+            System.out.println("Wrong username/password. Attempts left: " + attempts);
+        }
+        return false;
     }
 
     // Reads integer input safely

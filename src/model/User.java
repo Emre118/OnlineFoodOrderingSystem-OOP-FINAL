@@ -5,6 +5,7 @@ package model;
  * Stores simple login credentials for console application.
  */
 public class User {
+
     private final String username;
     private final String password;
 
@@ -19,5 +20,10 @@ public class User {
 
     public boolean checkPassword(String input) {
         return password.equals(input);
+    }
+
+    // simple login validation
+    public boolean checkLogin(String username, String password) {
+        return this.username.equals(username) && this.password.equals(password);
     }
 }
