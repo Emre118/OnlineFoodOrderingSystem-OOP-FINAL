@@ -10,11 +10,14 @@ public class Order {
 
     private final List<Orderable> items;
     private OrderStatus status;
+    private String paymentMethod;
 
     public Order() {
         this.items = new ArrayList<>();
         this.status = OrderStatus.CREATED;
+        this.paymentMethod = "NOT_SELECTED";
     }
+
 
     public void addItem(Orderable item) {
         items.add(item);
@@ -30,6 +33,14 @@ public class Order {
 
     public void markPaid() {
         this.status = OrderStatus.PAID;
+    }
+    public void markPaid(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+        this.status = OrderStatus.PAID;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 
     public OrderStatus getStatus() {
