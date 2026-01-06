@@ -2,6 +2,7 @@ package app;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import model.MenuItem;
 import model.Restaurant;
@@ -11,13 +12,29 @@ public class ConsoleApp {
     public static void main(String[] args) {
 
         List<Restaurant> restaurants = seedRestaurants();
+        Scanner sc = new Scanner(System.in);
 
+        // Restaurant list
         System.out.println("=== Restaurants ===");
         for (int i = 0; i < restaurants.size(); i++) {
             System.out.println((i + 1) + ") " + restaurants.get(i).getName());
         }
+
+        // User selects restaurant
+        int choice = readInt(sc, "Select restaurant (1-7): ", 1, restaurants.size());
+        Restaurant selectedRestaurant = restaurants.get(choice - 1);
+
+        // Print selected restaurant menu
+        System.out.println("\n--- " + selectedRestaurant.getName() + " Menu ---");
+        for (int i = 0; i < selectedRestaurant.getMenu().size(); i++) {
+            MenuItem item = selectedRestaurant.getMenu().get(i);
+            System.out.println((i + 1) + ") " + item.getName() + " - " + item.getPrice() + " TL");
+        }
+
+        sc.close();
     }
 
+    // Creates sample restaurants and menus
     private static List<Restaurant> seedRestaurants() {
         List<Restaurant> restaurants = new ArrayList<>();
 
@@ -58,5 +75,21 @@ public class ConsoleApp {
         restaurants.add(r7);
 
         return restaurants;
+    }
+
+    // Reads integer input safely
+    private static int readInt(Scanner sc, String prompt, int min, int max) {
+        while (true) {
+            System.out.print(prompt);
+            try {
+                int value = Integer.parseInt(sc.nextLine());
+                if (value >= min && value <= max) {
+                    return value;
+                }
+                System.out.println("Please enter a number between " + min + " and " + max);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input, try again.");
+            }
+        }
     }
 }
