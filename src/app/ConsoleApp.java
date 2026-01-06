@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.MenuItem;
+import model.Order;
 import model.Restaurant;
 
 public class ConsoleApp {
@@ -30,6 +31,29 @@ public class ConsoleApp {
             MenuItem item = selectedRestaurant.getMenu().get(i);
             System.out.println((i + 1) + ") " + item.getName() + " - " + item.getPrice() + " TL");
         }
+        System.out.println("0) Finish and go to checkout");
+
+        // Cart / Order
+        Order order = new Order();
+
+        // User adds items to cart
+        while (true) {
+            int itemChoice = readInt(sc, "Select item (0-" + selectedRestaurant.getMenu().size() + "): ",
+                    0, selectedRestaurant.getMenu().size());
+
+            if (itemChoice == 0) {
+                break;
+            }
+
+            MenuItem selectedItem = selectedRestaurant.getMenu().get(itemChoice - 1);
+            order.addItem(selectedItem);
+            System.out.println("Added: " + selectedItem.getName());
+        }
+
+        // Checkout summary (simple)
+        System.out.println("\n--- Cart Summary ---");
+        System.out.println("Items count: " + order.getItemCount());
+        System.out.println("Total: " + order.calculateTotal() + " TL");
 
         sc.close();
     }
