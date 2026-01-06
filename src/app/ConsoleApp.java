@@ -65,6 +65,30 @@ public class ConsoleApp {
         System.out.println("\n--- Cart Summary ---");
         System.out.println("Items count: " + order.getItemCount());
         System.out.println("Total: " + order.calculateTotal() + " TL");
+        
+        double finalTotal = order.calculateTotal();
+
+     // Coupon section
+     System.out.println("\nDo you have a discount coupon?");
+     System.out.println("1) Yes");
+     System.out.println("2) No");
+
+     int couponChoice = readInt(sc, "Your choice (1-2): ", 1, 2);
+
+     if (couponChoice == 1) {
+         System.out.print("Enter coupon code: ");
+         String code = sc.nextLine().trim();
+
+         // simple hardcoded coupon
+         if (code.equalsIgnoreCase("SAVE10")) {
+             finalTotal = order.applyDiscount(10);
+             System.out.println("Coupon applied! 10% discount.");
+         } else {
+             System.out.println("Invalid coupon. No discount applied.");
+         }
+     }
+
+     System.out.println("Final total: " + finalTotal + " TL");
 
        // Payment selection
         System.out.println("\nSelect payment method:");

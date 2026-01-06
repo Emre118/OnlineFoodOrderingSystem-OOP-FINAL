@@ -53,5 +53,12 @@ public class Order {
     public int getItemCount() {
         return items.size();
     }
+    public double applyDiscount(double percentage) {
+        if (percentage <= 0 || percentage > 100) {
+            return calculateTotal();
+        }
+        double total = calculateTotal();
+        return total - (total * percentage / 100);
+    }
 
 }
