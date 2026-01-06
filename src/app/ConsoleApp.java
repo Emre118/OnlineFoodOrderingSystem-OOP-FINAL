@@ -122,31 +122,59 @@ public class ConsoleApp {
 
         Restaurant r1 = new Restaurant("Chatto Burger");
         r1.addMenuItem(new MenuItem("Burger", 120));
+        r1.addMenuItem(new MenuItem("Cheese Burger", 140));
+        r1.addMenuItem(new MenuItem("French Fries", 50));
         r1.addMenuItem(new MenuItem("Cola", 30));
+        r1.addMenuItem(new MenuItem("Ice Cream", 45));
 
+        
         Restaurant r2 = new Restaurant("Pizza Lab");
         r2.addMenuItem(new MenuItem("Margherita", 140));
+        r2.addMenuItem(new MenuItem("Pepperoni", 170));
+        r2.addMenuItem(new MenuItem("Four Cheese", 180));
         r2.addMenuItem(new MenuItem("Ayran", 20));
+        r2.addMenuItem(new MenuItem("Tiramisu", 60));
+
 
         Restaurant r3 = new Restaurant("Sushi Go");
         r3.addMenuItem(new MenuItem("Sushi Roll", 220));
+        r3.addMenuItem(new MenuItem("California Roll", 210));
+        r3.addMenuItem(new MenuItem("Nigiri", 190));
         r3.addMenuItem(new MenuItem("Green Tea", 35));
+        r3.addMenuItem(new MenuItem("Mochi", 55));
+
 
         Restaurant r4 = new Restaurant("Kebab House");
-        r4.addMenuItem(new MenuItem("Adana", 180));
+        r4.addMenuItem(new MenuItem("Adana Kebab", 180));
+        r4.addMenuItem(new MenuItem("Urfa Kebab", 170));
+        r4.addMenuItem(new MenuItem("Lahmacun", 60));
         r4.addMenuItem(new MenuItem("Salgam", 25));
+        r4.addMenuItem(new MenuItem("Künefe", 75));
+
 
         Restaurant r5 = new Restaurant("Pasta Corner");
         r5.addMenuItem(new MenuItem("Spaghetti", 160));
+        r5.addMenuItem(new MenuItem("Fettuccine Alfredo", 170));
+        r5.addMenuItem(new MenuItem("Lasagna", 185));
         r5.addMenuItem(new MenuItem("Water", 10));
+        r5.addMenuItem(new MenuItem("Chocolate Cake", 65));
+
 
         Restaurant r6 = new Restaurant("Coffee & More");
         r6.addMenuItem(new MenuItem("Latte", 80));
+        r6.addMenuItem(new MenuItem("Cappuccino", 75));
+        r6.addMenuItem(new MenuItem("Americano", 65));
         r6.addMenuItem(new MenuItem("Cheesecake", 110));
+        r6.addMenuItem(new MenuItem("Brownie", 70));
+
 
         Restaurant r7 = new Restaurant("Healthy Bowl");
         r7.addMenuItem(new MenuItem("Chicken Bowl", 170));
+        r7.addMenuItem(new MenuItem("Vegan Bowl", 160));
+        r7.addMenuItem(new MenuItem("Salmon Bowl", 195));
         r7.addMenuItem(new MenuItem("Smoothie", 90));
+        r7.addMenuItem(new MenuItem("Protein Bar", 50));
+
 
         restaurants.add(r1);
         restaurants.add(r2);
