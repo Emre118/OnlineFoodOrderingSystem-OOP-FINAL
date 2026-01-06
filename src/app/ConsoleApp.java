@@ -55,7 +55,29 @@ public class ConsoleApp {
         System.out.println("Items count: " + order.getItemCount());
         System.out.println("Total: " + order.calculateTotal() + " TL");
 
-        sc.close();
+       // Payment selection
+        System.out.println("\nSelect payment method:");
+        System.out.println("1) Cash");
+        System.out.println("2) Credit Card");
+
+        int payChoice = readInt(sc, "Your choice (1-2): ", 1, 2);
+        String paymentMethod = (payChoice == 1) ? "CASH" : "CREDIT_CARD";
+
+        order.markPaid(paymentMethod);
+
+        // Final order summary
+        System.out.println("\n--- Final Order Summary ---");
+        System.out.println("Restaurant: " + selectedRestaurant.getName());
+        System.out.println("Items count: " + order.getItemCount());
+        System.out.println("Total: " + order.calculateTotal() + " TL");
+        System.out.println("Payment: " + order.getPaymentMethod());
+        System.out.println("Status: " + order.getStatus());
+        System.out.println("Payment completed.");
+
+        // Rating
+        int rating = readInt(sc, "Rate the restaurant (1-10): ", 1, 10);
+        System.out.println("Thanks! You rated " + selectedRestaurant.getName() + " as " + rating + "/10.");
+
     }
 
     // Creates sample restaurants and menus
