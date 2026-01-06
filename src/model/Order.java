@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents a customer order.
+ * Represents a customer's order.
  */
 public class Order {
 
-    private List<Orderable> items;
-    private boolean completed;
+    private final List<Orderable> items;
+    private OrderStatus status;
 
     public Order() {
         this.items = new ArrayList<>();
-        this.completed = false;
+        this.status = OrderStatus.CREATED;
     }
 
     public void addItem(Orderable item) {
@@ -22,19 +22,25 @@ public class Order {
 
     public double calculateTotal() {
         double total = 0;
-
         for (Orderable item : items) {
-            total += item.getPrice(); // polymorphism here
+            total += item.getPrice();
         }
-
         return total;
     }
 
-    public void markCompleted() {
-        this.completed = true;
+    public void markPaid() {
+        this.status = OrderStatus.PAID;
     }
 
-    public boolean isCompleted() {
-        return completed;
+    public OrderStatus getStatus() {
+        return status;
     }
+    public List<Orderable> getItems() {
+        return items;
+    }
+
+    public int getItemCount() {
+        return items.size();
+    }
+
 }
